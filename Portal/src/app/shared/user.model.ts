@@ -1,4 +1,5 @@
 export class User {
+    role: number;
     title: string;
     fullName: string;
     organization: string;

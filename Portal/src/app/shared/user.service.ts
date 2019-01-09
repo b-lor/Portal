@@ -10,6 +10,7 @@ import { User } from './user.model';
 })
 export class UserService {
   selectedUser: User = {
+    role: 20,
     title: '',
     fullName: '',
     organization: '',
@@ -70,6 +71,8 @@ export class UserService {
       else
         return false;
     }
+
+
 
 
 }

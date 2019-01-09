@@ -4,7 +4,7 @@
           <th colspan="2" class="text-center">User Profile</th>
       </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="role == '10'">
       <tr>
           <td>Title</td>
           <td>{{userDetails.title}}</td>

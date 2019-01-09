@@ -3,6 +3,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 var userSchema = new mongoose.Schema({
+    role: {
+        type: Number,
+        required: true,
+        default: 20,
+    },
     title: {
         type: String,
         required: 'Title can\'t be empty'

@@ -27,7 +27,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     UserComponent,
     SignUpComponent,
     UserProfileComponent,
-    SignInComponent
+    SignInComponent 
   ],
   imports: [
     BrowserModule,
@@ -42,4 +42,4 @@ import { AuthInterceptor } from './auth/auth.interceptor';
   },AuthGuard,UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { } 

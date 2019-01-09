@@ -18,8 +18,6 @@ app.use(cors());
 app.use(passport.initialize());
 app.use('/api', rtsIndex);
 
-//api/register from index.router.js
-
 // error handler
 app.use((err, req, res, next) => {
     if (err.name === 'ValidationError') {
