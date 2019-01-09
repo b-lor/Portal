@@ -1,0 +1,46 @@
+<table *ngIf="userDetails" class="table-fill">
+  <thead>
+      <tr>
+          <th colspan="2" class="text-center">User Profile</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Title</td>
+          <td>{{userDetails.title}}</td>
+        </tr>
+      <tr>
+          <td>Name</td>
+          <td>{{userDetails.fullName}}</td>
+        </tr>
+      <tr>
+          <td>Organization</td>
+          <td>{{userDetails.organization}}</td>
+        </tr>
+      <tr>
+          <td>Address Line 1</td>
+          <td>{{userDetails.address1}}</td>
+        </tr>
+      <tr>
+          <td>Address Line 2</td>
+          <td>{{userDetails.address2}}</td>
+        </tr>
+      <tr>
+          <td>City</td>
+          <td>{{userDetails.city}}</td>
+        </tr>
+      <tr>
+          <td>State</td>
+          <td>{{userDetails.state}}</td>
+        </tr>
+      <tr>
+          <td>Zip</td>
+          <td>{{userDetails.zip}}</td>
+      </tr>
+      <tr>
+          <td colspan="2" class="text-center">
+              <input type="button" (click)="onLogout()" value="Logout" />
+          </td>
+      </tr>
+  </tbody>
+</table>
