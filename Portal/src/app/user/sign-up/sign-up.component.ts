@@ -14,7 +14,7 @@ export class SignUpComponent implements OnInit {
   showSuccessMessage: boolean;
   serverErrorMessages: string;
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
   }
@@ -37,19 +37,18 @@ export class SignUpComponent implements OnInit {
   }
 
   resetForm(form: NgForm) {
-    this.userService.selectedUser = {
-      role: 20,
-      title: '',
-      fullName: '',
-      organization: '',
-      address1: '',
-      address2: '',
-      city: '',
-      state: '',
-      zip: '',
-      email: '',
-      password: ''
-    };
+    this.userService.selectedUser.firstName = '';
+    this.userService.selectedUser.lastName = '';
+    this.userService.selectedUser.company = '';
+    this.userService.selectedUser.logoUrl = '';
+    this.userService.selectedUser.email = '';
+    this.userService.selectedUser.phone = '';
+    this.userService.selectedUser.street = '';
+    this.userService.selectedUser.state = '';
+    this.userService.selectedUser.city = '';
+    this.userService.selectedUser.zip = '';
+    this.userService.selectedUser.password = '';
+
     form.resetForm();
     this.serverErrorMessages = '';
   }

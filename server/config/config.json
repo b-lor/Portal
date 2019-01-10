@@ -3,7 +3,7 @@
         "PORT": 3000,
         "MONGODB_URI": "mongodb+srv://bill:LHGAbtGaZK6vaF01@cluster0-zdx1j.mongodb.net/portal?retryWrites=true",
         "JWT_SECRET": "MYSECRETKEY",
-        "JWT_EXP": "5m" 
+        "JWT_EXP": "15m" 
     },
     "production": {
         "PORT": 80,

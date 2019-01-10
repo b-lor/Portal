@@ -7,16 +7,19 @@ const User = mongoose.model('User');
 //export index router js to register
 module.exports.register = (req, res, next) => {
     var user = new User();
-    user.title = req.body.title;
-    user.fullName = req.body.fullName;
-    user.organization = req.body.organization;
-    user.address1 = req.body.address1;
-    user.address2 = req.body.address2;
-    user.city = req.body.city;
-    user.state = req.body.state;
-    user.zip = req.body.zip;
+
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.company = req.body.company;
+    user.logoUrl = req.body.logoUrl;
     user.email = req.body.email;
+    user.phone = req.body.phone;
+    user.street = req.body.street;
+    user.state = req.body.state;
+    user.city = req.body.city;
+    user.zip = req.body.zip;
     user.password = req.body.password;
+
     user.save((err, doc) => {
         if (!err)
             res.send(doc);
@@ -32,7 +35,7 @@ module.exports.register = (req, res, next) => {
 
 module.exports.authenticate = (req, res, next) => {
     // call for passport authentication
-    passport.authenticate('local', (err, user, info) => {       
+    passport.authenticate('local', (err, user, info) => {
         // error from passport middleware
         if (err) return res.status(400).json(err);
         // registered user
@@ -42,13 +45,22 @@ module.exports.authenticate = (req, res, next) => {
     })(req, res);
 }
 
-module.exports.userProfile = (req, res, next) =>{
+// user details
+module.exports.userProfile = (req, res, next) => {
     User.findOne({ _id: req._id },
         (err, user) => {
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             else
-                return res.status(200).json({ status: true, user : _.pick(user,['title','fullName','organization','address1','address2','city','state','zip','email']) });
+                return res.status(200).json({ status: true, user: _.pick(user, ['title', 'fullName', 'organization', 'address1', 'address2', 'city', 'state', 'zip', 'email']) });
         }
     );
 }
+
+// module.exports.getUsers = (req, res, next) => {
+
+//     User.find({}).exec((err, result) => {
+//         console.log(result);
+//         return res.status(200).json(result);
+//     });
+// }

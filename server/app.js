@@ -8,6 +8,8 @@ const cors = require('cors');
 const passport = require('passport');
 
 const rtsIndex = require('./routes/index.router');
+const rtsInvoice = require('./routes/invoice.router');
+const rtsUser = require('./routes/user.router');
 
 
 var app = express();
@@ -16,7 +18,10 @@ var app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(passport.initialize());
-app.use('/api', rtsIndex);
+
+app.use('/api/users', rtsIndex);
+app.use('/api/customers', rtsUser);
+app.use('/api/invoices', rtsInvoice);
 
 // error handler
 app.use((err, req, res, next) => {
@@ -25,7 +30,7 @@ app.use((err, req, res, next) => {
         Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
         res.status(422).send(valErrors)
     }
-    else{
+    else {
         console.log(err);
     }
 });

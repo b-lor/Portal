@@ -9,70 +9,55 @@ import { User } from './user.model';
   providedIn: 'root'
 })
 export class UserService {
-  selectedUser: User = {
-    role: 20,
-    title: '',
-    fullName: '',
-    organization: '',
-    address1: '',
-    address2: '',
-    city: '',
-    state: '',
-    zip: '',
-    email: '',
-    password: ''
-  };
+  selectedUser = new User();
 
-  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' })};
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
   constructor(private http: HttpClient) { }
 
-    //HttpMethods
+  //HttpMethods
 
-    postUser(user: User){
-      return this.http.post(environment.apiBaseUrl+'/register',user,this.noAuthHeader);
-    }
-  
-    login(authCredentials) {
-      return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials,this.noAuthHeader);
-    }
-  
-    getUserProfile() {
-      return this.http.get(environment.apiBaseUrl + '/userProfile');
-    }
+  postUser(user: User) {
+    return this.http.post(environment.apiBaseUrl + '/users/register', user, this.noAuthHeader);
+  }
 
-    // Helper
-    setToken(token: string){
-      localStorage.setItem('token', token);
+  login(authCredentials) {
+    return this.http.post(environment.apiBaseUrl + '/users/authenticate', authCredentials, this.noAuthHeader);
+  }
+
+  getUserProfile() {
+    return this.http.get(environment.apiBaseUrl + '/users/userProfile');
+  }
+
+  // Helper
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  deleteToken() {
+    localStorage.removeItem('token');
+  }
+
+  getUserPayload() {
+    var token = this.getToken();
+    if (token) {
+      var userPayload = atob(token.split('.')[1]);
+      return JSON.parse(userPayload);
     }
+    else
+      return null;
+  }
 
-    getToken() {
-      return localStorage.getItem('token');
-    }
-
-    deleteToken() {
-      localStorage.removeItem('token');
-    }
-  
-    getUserPayload() {
-      var token = this.getToken();
-      if (token) {
-        var userPayload = atob(token.split('.')[1]);
-        return JSON.parse(userPayload);
-      }
-      else
-        return null;
-    }
-
-    isLoggedIn() {
-      var userPayload = this.getUserPayload();
-      if (userPayload)
-        return userPayload.exp > Date.now() / 1000;
-      else
-        return false;
-    }
-
-
-
+  isLoggedIn() {
+    var userPayload = this.getUserPayload();
+    if (userPayload)
+      return userPayload.exp > Date.now() / 1000;
+    else
+      return false;
+  }
 
 }

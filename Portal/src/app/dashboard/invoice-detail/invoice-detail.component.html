@@ -1,0 +1,51 @@
+<div *ngIf="invoice">
+	<div class="row">
+		<div class="col-md-8">
+			<h3>{{invoice.user.firstName}} {{invoice.user.lastName}} ({{invoice.user.company}})</h3>
+			<!-- <ul class="list-group">
+				<li class="list-group-item">{{invoice.user.street}}</li>
+				<li class="list-group-item">{{invoice.user.city}}</li>
+				<li class="list-group-item">{{invoice.user.state}}</li>
+				<li class="list-group-item">{{invoice.user.zip}}</li>
+			</ul> -->
+		</div>
+		<div class="col-md-4">
+			Invoice Date: {{invoice.status}}<br>
+			<!-- <h3>Status: {{invoice.status}}</h3> -->
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			<h4>Invoice Info</h4>
+
+			<table class="table">
+				<thead>
+				<tr>
+				  <th class="col">Service:</th>
+				  <th class="col">Amount:</th>
+				  <th class="col">Due Date:</th>
+				</tr>
+			</thead>
+				<tr>
+				  <td class="col">{{invoice.service}}</td>
+				  <td class="col">{{invoice.price}}</td>
+				  <td class="col">{{invoice.due}}</td>
+				</tr>
+				</table>
+				
+				<div class="modal-body">
+					<p>How would you like to export?</p>
+					<button type="button" onclick="fnAction('excel');" class="btn btn-primary">Text</button>
+					<button type="button" onclick="fnAction('pdf');" class="btn btn-success">PDF</button>
+					<button type="button" onclick="fnAction('copy');" class="btn btn-secondary">CSV</button>
+					<button type="button" onclick="fnAction('copy');" class="btn btn-danger">Print</button>
+			</div>
+			<!-- <ul class="list-group">
+				<li class="list-group-item">Service: {{invoice.service}}</li>
+				<li class="list-group-item">Amount: {{invoice.price}}</li>
+				<li class="list-group-item">Due Date: {{invoice.due}}</li>
+			</ul> -->
+		</div>
+	</div>
+</div>

@@ -12,30 +12,30 @@ import { UserService } from '../../shared/user.service';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private userService: UserService, private router : Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
-  model ={
-    email :'',
-    password:''
+  model = {
+    email: '',
+    password: ''
   };
 
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   serverErrorMessages: string;
 
   ngOnInit() {
-    if(this.userService.isLoggedIn())
-    this.router.navigateByUrl('/userprofile');
+    if (this.userService.isLoggedIn())
+      this.router.navigateByUrl('/dashboard');
   }
 
 
 
-  onSubmit(form : NgForm){
+  onSubmit(form: NgForm) {
     this.userService.login(form.value).subscribe(
       res => {
         this.userService.setToken(res['token']);
 
         // ---reroutes to different page
-        this.router.navigateByUrl('/userprofile');
+        this.router.navigateByUrl('/dashboard');
       },
       err => {
         this.serverErrorMessages = err.error.message;
