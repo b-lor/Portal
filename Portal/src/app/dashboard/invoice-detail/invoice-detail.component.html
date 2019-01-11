@@ -2,16 +2,16 @@
 	<div class="row">
 		<div class="col-md-8">
 			<h3>{{invoice.user.firstName}} {{invoice.user.lastName}} ({{invoice.user.company}})</h3>
-			<!-- <ul class="list-group">
+			<ul class="list-group">
 				<li class="list-group-item">{{invoice.user.street}}</li>
 				<li class="list-group-item">{{invoice.user.city}}</li>
 				<li class="list-group-item">{{invoice.user.state}}</li>
 				<li class="list-group-item">{{invoice.user.zip}}</li>
-			</ul> -->
+			</ul>
 		</div>
 		<div class="col-md-4">
-			Invoice Date: {{invoice.status}}<br>
-			<!-- <h3>Status: {{invoice.status}}</h3> -->
+			Invoice Date: {{invoice.createdAt}}<br>
+			<h3>Status: {{invoice.status}}</h3>
 		</div>
 	</div>
 	<hr>
